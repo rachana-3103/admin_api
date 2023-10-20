@@ -819,13 +819,13 @@ var Auth = {
         , DATE_FORMAT(o.inserted_at, '%d %b, %Y %h:%i %p') as inserted_at ,o.status,o.cancel_reason from tbl_order o JOIN tbl_user u ON u.id = o.user_id  `
 
         if(request.tag == 'received'){
-            query += ` WHERE o.status NOT IN ('Rejected', 'Order Cancelled', 'Delivered') ORDER BY inserted_at DESC`
+            query += ` WHERE o.status NOT IN ('Rejected', 'Order Cancelled', 'Delivered') ORDER BY order_id  DESC `
         } else if(request.tag == 'completed'){
             query += ` WHERE o.status = 'Delivered' ORDER BY inserted_at DESC`
         } else if (request.tag == 'cancelled'){
             query += ` WHERE o.status IN ('Order Cancelled', 'Rejected') ORDER BY inserted_at DESC`
         } else {
-            query += ` ORDER BY inserted_at DESC`
+            query += ` ORDER BY order_id DESC`
         }
         
         con.query(query, function (err,result) { 
@@ -846,7 +846,6 @@ var Auth = {
             let query = `SELECT p.*, CONCAT('${GLOBALS.PRODUCT_IMAGE}', p.image) as image, c.name as category_name from tbl_product p JOIN tbl_category c ON c.id = p.category_id `
            
             if(request.tag == 'Fruits'){
-                console.log("🚀 ~ request.tag:", request.tag)
                 query += ` WHERE p.is_deleted = 0 AND p.is_active=1 AND c.name = 'Fruits'`
             } 
             else if(request.tag == 'Vegetables'){

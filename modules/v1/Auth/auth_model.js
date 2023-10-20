@@ -800,26 +800,32 @@ var Auth = {
     },
 
     orderItemData: function (request, callback) { 
-        con.query(`select p.name, CONCAT('${GLOBALS.PRODUCT_IMAGE}', p.image) as image, d.price, p.qty, d.qty as quantity from tbl_order_detail d JOIN tbl_product p ON d.product_id = p.id WHERE d.order_id = '${request.id}'`, function (err1,res1) { 
+        con.query(`select p.id, p.name, CONCAT('${GLOBALS.PRODUCT_IMAGE}', p.image) as image, d.price, p.qty, d.qty as quantity from tbl_order_detail d JOIN tbl_product p ON d.product_id = p.id WHERE d.order_id = '${request.id}'`, function (err1,res1) { 
+            console.log("🚀 ~ res1:", res1)
             if (!err1 && res1[0] != undefined) {
                 callback('1',{ keyword:'rest_success', components:{} },res1)
             } else {
+                console.log("🚀 ~ err1:", err1)
+
                 callback('0',{ keyword:'rest_key_failed', components:{} },null)
             }
         })
     },
 
     manageOrder: function (request, callback) { 
-        let query = `select o.id, CONCAT(fname,' ', lname) as name,u.phone,u.business_name, o.order_id,o.total_payout,o.tax,o.shipping, o.payment_surcharge, o.address, DATE_FORMAT(o.deliver_datetime, '%d %b, %Y - 12:00 PM') as deliver_datetime, DATE_FORMAT(o.inserted_at, '%d %b, %Y') as inserted_at ,o.status,o.cancel_reason from tbl_order o JOIN tbl_user u ON u.id = o.user_id  `
+        let query = `select o.id, CONCAT(fname,' ', lname) as name,u.phone,u.business_name, o.order_id,o.total_payout,
+        o.tax,o.shipping, o.payment_surcharge, o.address,
+        DATE_FORMAT(o.deliver_datetime, '%d %b, %Y %h:%i %p') as deliver_datetime
+        , DATE_FORMAT(o.inserted_at, '%d %b, %Y %h:%i %p') as inserted_at ,o.status,o.cancel_reason from tbl_order o JOIN tbl_user u ON u.id = o.user_id  `
 
         if(request.tag == 'received'){
-            query += ` WHERE o.status NOT IN ('Rejected', 'Order Cancelled', 'Delivered') ORDER BY date(inserted_at) desc`
+            query += ` WHERE o.status NOT IN ('Rejected', 'Order Cancelled', 'Delivered') ORDER BY inserted_at DESC`
         } else if(request.tag == 'completed'){
-            query += ` WHERE o.status = 'Delivered' ORDER BY date(inserted_at) desc`
+            query += ` WHERE o.status = 'Delivered' ORDER BY inserted_at DESC`
         } else if (request.tag == 'cancelled'){
-            query += ` WHERE o.status IN ('Order Cancelled', 'Rejected') ORDER BY date(inserted_at) desc`
+            query += ` WHERE o.status IN ('Order Cancelled', 'Rejected') ORDER BY inserted_at DESC`
         } else {
-            query += ` ORDER BY date(inserted_at) desc`
+            query += ` ORDER BY inserted_at DESC`
         }
         
         con.query(query, function (err,result) { 
@@ -836,37 +842,48 @@ var Auth = {
     },
 
     manageProduct: function (request, callback) { 
-        let query = `select * from tbl_product o JOIN tbl_user u ON u.id = o.user_id `
-
-        console.log("🚀 ~ query:", query)
-        if(request.tag == 'Fruits'){
-            query += ` WHERE tbl_product p JOIN tbl_category c ON  p.category_id  = c.id`
-        } 
-        // else if(request.tag == 'completed'){
-        //     query += ` WHERE o.status = 'Delivered' ORDER BY date(inserted_at) desc`
-        // } else if (request.tag == 'cancelled'){
-        //     query += ` WHERE o.status IN ('Order Cancelled', 'Rejected') ORDER BY date(inserted_at) desc`
-        // } 
-        else {
-            query += ` ORDER BY date(inserted_at) desc`
-        }
-        
-        con.query(query, function (err,result) { 
-            console.log("🚀 ~ result:", result)
-            if (!err) {
-                if (result[0] != undefined) {
-                    callback('1',{ keyword:'rest_success', components:{} },result)
-                } else {
-                    callback('2',{ keyword:'No Order Found', components:{} },[])
-                }
+        try {
+            let query = `SELECT p.*, CONCAT('${GLOBALS.PRODUCT_IMAGE}', p.image) as image, c.name as category_name from tbl_product p JOIN tbl_category c ON c.id = p.category_id `
+           
+            if(request.tag == 'Fruits'){
+                console.log("🚀 ~ request.tag:", request.tag)
+                query += ` WHERE p.is_deleted = 0 AND p.is_active=1 AND c.name = 'Fruits'`
+            } 
+            else if(request.tag == 'Vegetables'){
+                query += ` WHERE p.is_deleted = 0 AND p.is_active=1 AND c.name = 'Vegetables'`
+            } else if (request.tag == 'Grocery'){
+                query += ` WHERE p.is_deleted = 0 AND p.is_active=1 AND c.name = 'Grocery'`
+            } 
+            else {
+                 if(request.id != undefined && request.id != 0){
+                query += ` AND p.id = '${request.id}'`
             } else {
-                callback('0',{ keyword:'rest_key_failed', components:{} },null)
+                query += ` ORDER BY p.name ASC`
             }
-        })
+                query  =  query
+            }
+            
+            con.query(query, function (err,result) { 
+                console.log("🚀 ~ result:", result)
+                if (!err) {
+                    if (result[0] != undefined) {
+                        callback('1',{ keyword:'rest_success', components:{} },result)
+                    } else {
+                        callback('2',{ keyword:'No Order Found', components:{} },[])
+                    }
+                } 
+                else {
+                    callback('0',{ keyword:'rest_key_failed', components:{} },null)
+                }
+            })
+        } catch (error) {
+            console.log("🚀 ~ error:", error)
+        }
+     
     },
 
     manageOrderDataInvoice: function (request, callback) { 
-        let query = `select o.id, CONCAT(fname,' ', lname) as name,u.phone, o.order_id,o.total_payout,o.tax,o.shipping, o.payment_surcharge, o.address, DATE_FORMAT(o.deliver_datetime, '%d %b, %Y - 12:00 PM') as deliver_datetime, DATE_FORMAT(o.inserted_at, '%d %b, %Y') as inserted_at ,o.status, o.cancel_reason from tbl_order o JOIN tbl_user u ON u.id = o.user_id WHERE o.order_id='${request.id}'`
+        let query = `select o.id, CONCAT(fname,' ', lname) as name,u.phone, o.order_id,o.total_payout,o.tax,o.shipping, o.payment_surcharge, o.address, DATE_FORMAT(o.deliver_datetime, '%d %b, %Y %h:%i %p') as deliver_datetime, DATE_FORMAT(o.inserted_at, '%d %b, %Y %h:%i %p') as inserted_at ,o.status, o.cancel_reason, u.business_name from tbl_order o JOIN tbl_user u ON u.id = o.user_id WHERE o.order_id='${request.id}'`
 
         con.query(query, function (err,result) { 
             if (!err) {
@@ -1033,7 +1050,13 @@ var Auth = {
         })
     },
     flyerReports: function (request, callback) { 
-        con.query(`SELECT count(id) as count, DATE_FORMAT(inserted_at,'%Y-%m-%d') as date, sum(total_payout) as payment FROM tbl_order where date(inserted_at) between '${request.start_date}' and '${request.end_date}' and status NOT in ('Order Cancelled', 'Rejected') group by date(inserted_at) ORDER BY DATE(inserted_at) desc`, function (err,result) { 
+        con.query(`SELECT order_id, product_id, address, status, count(id) as count, 
+        DATE_FORMAT(inserted_at,'%Y-%m-%d %h:%i %p') as order_date,
+        DATE_FORMAT(deliver_datetime,'%Y-%m-%d %h:%i %p') as deliver_datetime, 
+        sum(total_payout) as payment FROM tbl_order where date(inserted_at)
+         between '${request.start_date}' and '${request.end_date}' and 
+         status NOT in ('Order Cancelled', 'Rejected') group by date(inserted_at) 
+         ORDER BY DATE(inserted_at) desc`, function (err,result) { 
             if (!err) {
                 if (result[0] != undefined) {
                     callback('1',{ keyword:'rest_success', components:{} },result.reverse())

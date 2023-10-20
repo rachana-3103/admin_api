@@ -10,7 +10,6 @@ const messages = require('../../../languages/en');
 
 
 router.post('/adminlogin', function (req,res) { 
-    console.log("🚀 ~ req:", req)
     middleware.decryption(req, function (request) { 
         var rules = { 
             email: 'required',
@@ -438,11 +437,11 @@ router.post('/flyperreport', function (req, res) {
     middleware.decryption(req, function (request) { 
         var rules = {
             start_date:'required',
-end_date:'required',
+            end_date:'required',
         }
-        const messages = { 
-            'required': req.language.required
-        }
+        // const messages = { 
+        //     'required': req.language.required
+        // }
 
         if(middleware.checkValidationRules(request, res, rules, messages,{})){
             auth_model.flyerReports(request, function (responsecode, responsemsg, responsedata) { 
@@ -727,9 +726,9 @@ router.post('/orderitemdata', function (req, res) {
     var rules = { 
             id:'required'
         }
-        const messages = {
-            'required': req.language.required
-        }
+        // const messages = {
+        //     'required': req.language.required
+        // }
 
         if(middleware.checkValidationRules(request, res,rules, messages,{})){
             auth_model.orderItemData(request, function (responsecode, responsemsg, responsedata) { 
@@ -780,9 +779,8 @@ router.post('/manageproduct', function (req, res) {
     var rules = { 
             tag:'required'
         }
-        console.log("🚀 ~ rules:", rules)
         const messages = {
-            'required': req.language.required
+            // 'required': req.language.required
         }
 
         if(middleware.checkValidationRules(request, res,rules, messages,{})){

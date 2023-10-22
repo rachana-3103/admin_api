@@ -236,7 +236,7 @@ exports.verifyEmail = function(result,callback)
                                                         background: linear-gradient(to right, #fff 0%, #fff 100%) !important;">
                                                           <!-- Your Logo -->
     
-                                                          <img align="center" alt="Logo" class="kmImage" src="http://3.26.203.80/api/logo192.png" width="100" style="border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-bottom:0;display:inline;vertical-align:bottom;max-width:199px;" />
+                                                          <img align="center" alt="Logo" class="kmImage" src="http://3.26.203.80/api/logo192.png" width="50" style="border:0;height:auto;line-height:50%;outline:none;text-decoration:none;padding-bottom:0;display:inline;vertical-align:bottom;max-width:199px;" />
                                                         </td>
                                                       </tr>
                                                     </tbody>
@@ -257,11 +257,11 @@ exports.verifyEmail = function(result,callback)
                                                           <!-- Your Content As below -->
                                                           <p style="margin:0;padding-bottom:1em;text-align: justify;"><span style="font-size:16px;"><span style="color: rgb(0, 0, 0);"><span style="font-family: arial,helvetica,sans-serif;"></span></span></span></p>
                                                           <p style="margin:0;padding-bottom:1em"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 16px;">Hi <strong>${result.fname}</strong>,</span></span></p>
-                                                          <p style="margin:0;padding-bottom:1em">Welcome to ${GLOBALS.APP_NAME}! Thank you for joining ${GLOBALS.APP_NAME} Vendor community.</p>
-                                                          <p style="margin:0;padding-bottom:1em">Please Access Vendor Panel using Below Credential </p>
+                                                          <p style="margin:0;padding-bottom:1em">Welcome to ${GLOBALS.APP_NAME}! Thank you for joining ${GLOBALS.APP_NAME} community.</p>
+                                                          <p style="margin:0;padding-bottom:1em"> Please use the below Credential to login into ordaring App </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Email : ${result.email} </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Password : ${result.password} </p>
-                                                          <p style="margin:0;padding-bottom:1em">Please click on the link below to Open Live Cart Vendor Panel : </p>
+                                                         
                                                           
                                                           <p style="text-align: center;margin:0;padding-bottom:1em">
                                                             <span style="font-family:arial,helvetica,sans-serif;">
@@ -560,7 +560,7 @@ exports.registerEmail = function(result,callback)
                                                           <p style="margin:0;padding-bottom:1em;text-align: justify;"><span style="font-size:16px;"><span style="color: rgb(0, 0, 0);"><span style="font-family: arial,helvetica,sans-serif;"></span></span></span></p>
                                                           <p style="margin:0;padding-bottom:1em"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 16px;">Hi <strong>${result.fname} ${result.lname}</strong>,</span></span></p>
                                                           <p style="margin:0;padding-bottom:1em">Welcome to ${GLOBALS.APP_NAME}! Thank you for joining ${GLOBALS.APP_NAME} community.</p>
-                                                          <p style="margin:0;padding-bottom:1em">You can Access using Below Credential </p>
+                                                          <p style="margin:0;padding-bottom:1em">You can Access our ordaring APP using Below Credential </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Email : ${result.email} </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Password : ${result.password} </p>
 

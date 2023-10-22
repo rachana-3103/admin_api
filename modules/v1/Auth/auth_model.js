@@ -745,7 +745,7 @@ var Auth = {
                                 if (!err2 && res2.insertId > 0) {
                                     Auth.userdetails(res1.insertId, function (DataUser) { 
                                         emailTemplate.registerEmail(DataUser, function (verifytemplate) {
-                                            common.send_email("Ballina's Customer Credential", DataUser.email, verifytemplate, function (isSend) {
+                                            common.send_email("Ballina Farm Fresh: New User Credentials", DataUser.email, verifytemplate, function (isSend) {
                                                 callback('1',{ keyword:'rest_success', components:{} },[])
                                             })
                                         })

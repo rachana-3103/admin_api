@@ -9,7 +9,7 @@ exports.verifyEmail = function(result,callback)
         <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>${GLOBALS.APP_NAME} - Congratulation</title>
+        
     
             <style type="text/css">
                 @media only screen and (max-width: 480px) {
@@ -311,7 +311,7 @@ exports.registerEmail = function(result,callback)
         <head>
           <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>${GLOBALS.APP_NAME} - Congratulation</title>
+        
     
             <style type="text/css">
                 @media only screen and (max-width: 480px) {
@@ -559,8 +559,8 @@ exports.registerEmail = function(result,callback)
                                                           <!-- Your Content As below -->
                                                           <p style="margin:0;padding-bottom:1em;text-align: justify;"><span style="font-size:16px;"><span style="color: rgb(0, 0, 0);"><span style="font-family: arial,helvetica,sans-serif;"></span></span></span></p>
                                                           <p style="margin:0;padding-bottom:1em"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 16px;">Hi <strong>${result.fname} ${result.lname}</strong>,</span></span></p>
-                                                          <p style="margin:0;padding-bottom:1em">Welcome to ${GLOBALS.APP_NAME}! Thank you for joining ${GLOBALS.APP_NAME} community.</p>
-                                                          <p style="margin:0;padding-bottom:1em">You can Access our ordaring APP using Below Credential </p>
+                                                          <p style="margin:0;padding-bottom:1em">Thank you for joining ${GLOBALS.APP_NAME} Store.</p>
+                                                          <p style="margin:0;padding-bottom:1em">You can Access our ordaring App using Below Credential </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Email : ${result.email} </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Password : ${result.password} </p>
 

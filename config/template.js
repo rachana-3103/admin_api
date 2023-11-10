@@ -564,8 +564,10 @@ exports.registerEmail = function(result,callback)
                                                           <p style="margin:0;padding-bottom:1em">Your Password : ${result.password} </p>
 
                                                           <p style="margin:0;padding-bottom:1em"> If you did not request this change, please let us know by replying to this email.</p>
-                                                          
-                                                          <img align="center" alt="app"  src="http://13.238.15.59/api/App.png" />
+                                                          <a href="https://apps.apple.com/us/app/ballina-farm-fresh/id6470903718">
+                                                          <img align="center" alt="ios"  src="http://13.238.15.59/api/App.png" /></a>
+                                                          <a href="https://play.google.com/store/apps/details?id=com.app.balinas_veg_shop&pcampaignid=web_share">
+                                                          <img align="center" alt="android"  src="http://13.238.15.59/api/google.png" /></a>
 
                                                           <p style="margin:0;padding-bottom:1em"> </p>
                                                           <p style="margin:0;padding-bottom:1em"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 16px;">Kind Regards,</span></span></p>

@@ -565,7 +565,7 @@ exports.registerEmail = function(result,callback)
 
                                                           <p style="margin:0;padding-bottom:1em"> If you did not request this change, please let us know by replying to this email.</p>
                                                           
-                                                          <img align="center" alt="app"  src="app.svg" />
+                                                          <img align="center" alt="app"  src="http://13.238.15.59/api/App.png" />
 
                                                           <p style="margin:0;padding-bottom:1em"> </p>
                                                           <p style="margin:0;padding-bottom:1em"><span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 16px;">Kind Regards,</span></span></p>

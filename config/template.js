@@ -563,10 +563,19 @@ exports.registerEmail = function(result,callback)
                                                           <p style="margin:0;padding-bottom:1em">Your Email : ${result.email} </p>
                                                           <p style="margin:0;padding-bottom:1em">Your Password : ${result.password} </p>
 
-                                                          <a href="https://apps.apple.com/us/app/ballina-farm-fresh/id6470903718">
-                                                          <img align="center" alt="ios"  src="http://13.238.15.59/api/App.png"/></a>
-                                                          <a href="https://play.google.com/store/apps/details?id=com.app.balinas_veg_shop&pcampaignid=web_share">
-                                                          <img align="center" alt="android"  src="http://13.238.15.59/api/google.png"/></a>
+                                                          </td>
+                                                          </tr>
+                                                          <tr>
+                                                          <td>
+                                                                                                                    <a href="https://apps.apple.com/us/app/ballina-farm-fresh/id6470903718" title="">
+                                                                                                                    <img  src="http://13.238.15.59/api/App.png" style="border:0px solid transparent;height:50px;width:159px" data-bit="iit" /></a>
+                                                                                                                    <a href="https://play.google.com/store/apps/details?id=com.app.balinas_veg_shop&pcampaignid=web_share" title="" target="_blank">
+                                                                                                                    <img  src="http://13.238.15.59/api/google.png" style="border:0px solid transparent;height:58px;width:168px" data-bit="iit"></a>
+                                                          </td>
+                                                          </tr>
+                                                          <tr>
+                                                                                                                  <td class="kmTextContent" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#000;font-family:Helvetica, Arial;font-size:14px;line-height:150%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;">
+
                                                           
                                                           <p style="margin:0;padding-bottom:1em"> If you did not request this change, please let us know by replying to this email.</p>
 
@@ -1140,16 +1149,25 @@ exports.forgot_password = function(result,callback)
                                                           
                                                           <p style="text-align: center;margin:0;padding-bottom:1em">
                                                             <span style="font-family:arial,helvetica,sans-serif;">
-                                                              <span style="font-size: 16px;">
+                                                            <span style="font-size: 16px;">
                                                                 <a href="${result.url}" target="_blank" class="btn btn-default" style="word-wrap:break-word;color:#0000cd;font-weight:normal;text-decoration:underline">Change Password</a>
                                                               </span>
                                                             </span>
                                                           </p>
 
-                                                          <a href="https://apps.apple.com/us/app/ballina-farm-fresh/id6470903718">
-                                                          <img align="center" alt="ios"  src="http://13.238.15.59/api/App.png"/></a>
-                                                          <a href="https://play.google.com/store/apps/details?id=com.app.balinas_veg_shop&pcampaignid=web_share">
-                                                          <img align="center" alt="android"  src="http://13.238.15.59/api/google.png"/></a>
+                                                          </td>
+                                                          </tr>
+                                                          <tr>
+                                                          <td>
+                                                                                                                    <a href="https://apps.apple.com/us/app/ballina-farm-fresh/id6470903718" title="">
+                                                                                                                    <img  src="http://13.238.15.59/api/App.png" style="border:0px solid transparent;height:50px;width:159px" data-bit="iit" /></a>
+                                                                                                                    <a href="https://play.google.com/store/apps/details?id=com.app.balinas_veg_shop&pcampaignid=web_share" title="" target="_blank">
+                                                                                                                    <img  src="http://13.238.15.59/api/google.png" style="border:0px solid transparent;height:58px;width:168px" data-bit="iit"></a>
+                                                          </td>
+                                                          </tr>
+                                                          <tr>
+                                                                                                                  <td class="kmTextContent" valign="top" style="border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;color:#000;font-family:Helvetica, Arial;font-size:14px;line-height:150%;text-align:left;padding-top:9px;padding-bottom:9px;padding-left:18px;padding-right:18px;">
+
                                                           
                                                           <p style="margin:0;padding-bottom:1em"> If you did not request this change, please let us know by replying to this email.</p>
                                                           <p style="margin:0;padding-bottom:1em"> </p>
